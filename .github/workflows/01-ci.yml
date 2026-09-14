@@ -5,6 +5,11 @@ on:
   push:
     branches:
       - main
+
+  # Run backend tests for pull requests without publishing images
+  pull_request:
+    branches:
+      - main
   
   # Manual trigger for the workflow
   workflow_dispatch:
