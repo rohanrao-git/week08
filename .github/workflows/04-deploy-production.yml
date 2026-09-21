@@ -98,6 +98,24 @@ jobs:
           kubectl apply \
             -f kubernetes/production/
 
+      - name: Deploy monitoring stack
+        run: |
+          kubectl apply \
+            -f kubernetes/monitoring/
+
+          kubectl rollout status deployment/prometheus \
+            -n monitoring \
+            --timeout=300s
+
+          kubectl rollout status deployment/grafana \
+            -n monitoring \
+            --timeout=300s
+
+      - name: Verify monitoring resources
+        run: |
+          kubectl get pods -n monitoring
+          kubectl get services -n monitoring
+
       - name: Update frontend image
         run: |
           kubectl set image deployment/frontend \
