@@ -103,6 +103,9 @@ jobs:
           kubectl apply \
             -f kubernetes/monitoring/
 
+          kubectl rollout restart deployment/prometheus \
+            -n monitoring
+
           kubectl rollout status deployment/prometheus \
             -n monitoring \
             --timeout=300s
