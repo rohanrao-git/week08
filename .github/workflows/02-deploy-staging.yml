@@ -64,10 +64,10 @@ jobs:
             --name "$APP_SERVICE_NAME" \
             --resource-group "$RESOURCE_GROUP" \
             --slot "$SLOT_NAME" \
-            --docker-custom-image-name "${ACR_LOGIN_SERVER}/${IMAGE_NAME}:${IMAGE_TAG}" \
-            --docker-registry-server-url "https://${ACR_LOGIN_SERVER}" \
-            --docker-registry-server-user "$ACR_USERNAME" \
-            --docker-registry-server-password "$ACR_PASSWORD"
+            --container-image-name "${IMAGE_NAME}:${IMAGE_TAG}" \
+            --container-registry-url "https://${ACR_LOGIN_SERVER}" \
+            --container-registry-user "$ACR_USERNAME" \
+            --container-registry-password "$ACR_PASSWORD"
 
       - name: Restart staging slot
         run: |
