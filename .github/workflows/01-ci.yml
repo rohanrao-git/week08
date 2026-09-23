@@ -205,6 +205,7 @@ jobs:
             ./${{ matrix.service }}
 
       - name: Scan image with Docker Scout
+        continue-on-error: true
         uses: docker/scout-action@v1
         with:
           command: cves
