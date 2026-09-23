@@ -40,7 +40,7 @@ jobs:
       - name: Swap staging into production
         run: |
           echo "Swapping ${STAGING_SLOT} slot into ${PRODUCTION_SLOT} slot"
-          az webapp deployment slot swap \
+          timeout 180s az webapp deployment slot swap \
             --name "$APP_SERVICE_NAME" \
             --resource-group "$RESOURCE_GROUP" \
             --slot "$STAGING_SLOT" \
@@ -77,7 +77,7 @@ jobs:
             echo "Production verification failed: the live endpoint did not respond successfully."
             echo "Rolling back to the previous production version using the slot swap."
 
-            az webapp deployment slot swap \
+            timeout 180s az webapp deployment slot swap \
               --name "$APP_SERVICE_NAME" \
               --resource-group "$RESOURCE_GROUP" \
               --slot "$STAGING_SLOT" \
@@ -91,7 +91,7 @@ jobs:
             echo "Production response did not match the expected HTML markers."
             echo "Rolling back to the previous production version using the slot swap."
 
-            az webapp deployment slot swap \
+            timeout 180s az webapp deployment slot swap \
               --name "$APP_SERVICE_NAME" \
               --resource-group "$RESOURCE_GROUP" \
               --slot "$STAGING_SLOT" \
