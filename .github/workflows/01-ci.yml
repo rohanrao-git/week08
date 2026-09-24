@@ -1,25 +1,25 @@
 name: 01 - CI
 
 on:
-  # Trigger the workflow on push to main branch
+
   push:
     branches:
       - main
 
-  # Run backend tests for pull requests without publishing images
+
   pull_request:
     branches:
       - main
   
-  # Manual trigger for the workflow
+
   workflow_dispatch:
 
 
 jobs:
 
-  # =========================================================
+
   # Backend Tests
-  # =========================================================
+
   backend-test:
     name: Test ${{ matrix.service }}
     runs-on: ubuntu-latest
@@ -107,9 +107,9 @@ jobs:
           pytest -v
 
 
-  # =========================================================
+
   # Terraform Infrastructure Validation and Plan
-  # =========================================================
+
   terraform:
     name: Terraform Validate and Plan
     runs-on: ubuntu-latest
@@ -145,9 +145,9 @@ jobs:
         run: terraform plan -input=false -var-file=terraform.tfvars
 
 
-  # =========================================================
+
   # Build and Push Docker Images
-  # =========================================================
+
   build-and-push:
     name: Build and Push ${{ matrix.image }}
     runs-on: ubuntu-latest

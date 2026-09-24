@@ -39,6 +39,28 @@ variable "aks_cluster_name" {
   type        = string
 }
 
+variable "app_service_plan_name" {
+  description = "Name of the Azure App Service Plan"
+  type        = string
+}
+
+variable "app_service_plan_sku" {
+  description = "SKU for the Azure App Service Plan"
+  type        = string
+  default     = "S1"
+}
+
+variable "app_service_name" {
+  description = "Globally unique name of the Azure App Service web app"
+  type        = string
+}
+
+variable "app_service_staging_slot_name" {
+  description = "Name of the App Service staging deployment slot"
+  type        = string
+  default     = "staging"
+}
+
 variable "aks_dns_prefix" {
   description = "DNS prefix used by the AKS cluster"
   type        = string
